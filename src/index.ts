@@ -8,8 +8,10 @@ const app = express();
 export const PORT = process.env.PORT || 3009;
 export const deployFolder = path.join(__dirname, 'public');
 const domain = process.env.DOMAIN || 'localhost';
+const mongoURL =
+    process.env.MONGO_URL || 'mongodb://localhost:27017/query-book-deployment';
 
-mongoose.connect('mongodb://localhost:27017/query-book-deployment').then(() => {
+mongoose.connect(mongoURL).then(() => {
     console.log('Connect to deploy server');
 });
 
