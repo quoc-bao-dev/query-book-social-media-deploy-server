@@ -3,6 +3,7 @@ import fs from 'fs';
 import mongoose from 'mongoose';
 import path from 'path';
 import router from './routes';
+import cors from 'cors';
 
 const app = express();
 export const PORT = process.env.PORT || 3009;
@@ -18,6 +19,11 @@ if (!fs.existsSync(deployFolder)) {
     fs.mkdirSync(deployFolder, { recursive: true });
 }
 
+app.use(
+    cors({
+        origin: '*',
+    })
+);
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
